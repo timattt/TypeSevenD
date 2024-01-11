@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/task')
 def index():
     print("Test endpoint!")
-    conn = psycopg2.connect(host=os.environ['TYPE6_DATABASE_URL'], port=os.environ['TYPE6_DATABASE_PORT'], sslmode="verify-full", dbname="type-6-database", user=os.environ['TYPE6_DATABASE_USER'], password=os.environ['TYPE6_DATABASE_PASSWORD'], target_session_attrs="read-write")
+    conn = psycopg2.connect(host=os.environ['TYPE6_DATABASE_URL'], port=os.environ['TYPE6_DATABASE_PORT'], sslmode="verify-full", dbname="type-6-database", user=os.environ['TYPE6_DATABASE_USER'], password=os.environ['TYPE6_DATABASE_PASSWORD'])
     cursor = conn.cursor()
     cursor.execute('select * from type6user')
     res = cursor.fetchall()
