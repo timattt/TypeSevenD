@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     id = request.args.get('id')
     app.logger.info("Task with id: {}".format(id))
-    print("Task with id: {}".format(id), file=sys.stdout)
+    print("Task with id: {}".format(id), file=sys.stdout, flush=True)
     conn = psycopg2.connect(host=os.environ['TYPE6_DATABASE_URL'], port=os.environ['TYPE6_DATABASE_PORT'], sslmode="verify-full", dbname="type-6-database", user=os.environ['TYPE6_DATABASE_USER'], password=os.environ['TYPE6_DATABASE_PASSWORD'])
     cursor = conn.cursor()
     cursor.execute('select * from type6user')
