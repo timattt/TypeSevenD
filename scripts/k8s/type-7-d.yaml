@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: type-7-d
-          image: docker.io/timattt/type-6-d:latest
+          image: docker.io/timattt/type-7-d:latest
           imagePullPolicy: Always
           env:
             - name: TYPE6_DATABASE_USER
