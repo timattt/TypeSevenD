@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: type-6-d
+  name: type-7-d
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: type-6-d
+      app: type-7-d
   template:
     metadata:
       labels:
-        app: type-6-d
+        app: type-7-d
     spec:
       containers:
-        - name: type-6-d
+        - name: type-7-d
           image: docker.io/timattt/type-6-d:latest
           imagePullPolicy: Always
           env:

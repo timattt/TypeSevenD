@@ -1,4 +1,4 @@
-name: deploy-type-6
+name: deploy-type-7-d
 
 on:
   workflow_dispatch:
@@ -26,7 +26,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: timattt/type-6-d:latest
+          tags: timattt/type-7-d:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -43,6 +43,6 @@ jobs:
           kubectl config set-context default --cluster=k8s --user=admin
           kubectl config use-context default          
           kubectl get pod -A
-          kubectl delete --ignore-not-found=true -f scripts/k8s/type-6-d.yaml
-          kubectl apply -f scripts/k8s/type-6-d.yaml
+          kubectl delete --ignore-not-found=true -f scripts/k8s/type-7-d.yaml
+          kubectl apply -f scripts/k8s/type-7-d.yaml
           kubectl get pod -A
