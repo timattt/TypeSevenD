@@ -50,19 +50,19 @@ public class FindMatchForUserTask implements Runnable {
     }
 
     private void saveMatch(UserDTO match) {
-        log.info("For user: [" + userId + "] match is found: [" + match.getId() + "]");
         Metadata metadata = metadataService.loadUserMetadata(userId);
         metadata.getSelectedUsers().clear();
-        metadata.getSelectedUsers().add(match.getId());
+        if (match != null) {
+            log.info("For user: [" + userId + "] match is found: [" + match.getId() + "]");
+            metadata.getSelectedUsers().add(match.getId());
+        }
         metadataService.saveUserMetadata(userId, metadata);
     }
 
     @Override
     public void run() {
         UserDTO match = findMatch();
-        if (match != null) {
-            saveMatch(match);
-        }
+        saveMatch(match);
     }
 
 }

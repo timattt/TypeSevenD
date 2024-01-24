@@ -17,6 +17,8 @@ spec:
           image: docker.io/timattt/type-7-d:latest
           imagePullPolicy: Always
           env:
+            - name: TYPE7_ACTIVE_PROFILE
+              value: release
             - name: TYPE6_DATABASE_USER
               value: default-user
             - name: TYPE6_DATABASE_URL
