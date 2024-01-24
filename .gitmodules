@@ -1,0 +1,6 @@
+[submodule "TypeSevenDataBaseCommon"]
+	path = TypeSevenDataBaseCommon
+	url = https://github.com/timattt/TypeSevenDataBaseCommon.git
+[submodule "TypeSixDataBaseCommon"]
+	path = TypeSixDataBaseCommon
+	url = https://github.com/timattt/TypeSixDataBaseCommon.git
