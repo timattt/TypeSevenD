@@ -41,6 +41,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.shlimtech.type7common</groupId>
             <artifactId>TypeSevenDataBaseCommon</artifactId>
             <version>0.0.1-SNAPSHOT</version>
