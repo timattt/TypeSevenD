@@ -4,7 +4,7 @@ metadata:
   name: type-7-d
   annotations:
     prometheus.io/scrape: "true"
-    prometheus.io/port: "443"
+    prometheus.io/port: "8000"
     prometheus.io/path: "/actuator/prometheus"
 spec:
   replicas: 1
