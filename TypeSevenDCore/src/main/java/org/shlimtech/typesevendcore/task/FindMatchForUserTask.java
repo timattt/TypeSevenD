@@ -1,5 +1,6 @@
 package org.shlimtech.typesevendcore.task;
 
+import io.micrometer.core.instrument.Counter;
 import lombok.extern.java.Log;
 import org.shlimtech.typesevendatabasecommon.metadata.Metadata;
 import org.shlimtech.typesevendatabasecommon.service.MetadataService;
@@ -15,10 +16,12 @@ public class FindMatchForUserTask implements Runnable {
     private final UserService userService;
     private final int userId;
 
-    public FindMatchForUserTask(MetadataService metadataService, UserService userService, int userId) {
+    public FindMatchForUserTask(MetadataService metadataService, UserService userService, Counter tasksCounter, int userId) {
         this.metadataService = metadataService;
         this.userService = userService;
         this.userId = userId;
+
+        tasksCounter.increment();
 
         log.info("Creating new task for user: [" + userId + "]");
     }

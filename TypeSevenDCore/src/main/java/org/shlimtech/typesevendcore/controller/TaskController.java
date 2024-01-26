@@ -1,5 +1,6 @@
 package org.shlimtech.typesevendcore.controller;
 
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.shlimtech.typesevendatabasecommon.service.MetadataService;
@@ -19,11 +20,12 @@ public class TaskController {
     private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
     private final UserService userService;
     private final MetadataService metadataService;
+    private final Counter taskCounter;
 
     @PostMapping("/task/{id}")
     public ResponseEntity<?> createTask(@PathVariable(name = "id") int id) {
         log.info("Received task creation event for user: [" + id + "]");
-        threadPoolTaskExecutor.execute(new FindMatchForUserTask(metadataService, userService, id));
+        threadPoolTaskExecutor.execute(new FindMatchForUserTask(metadataService, userService, taskCounter, id));
         return ResponseEntity.ok().build();
     }
 

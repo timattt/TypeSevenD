@@ -1,5 +1,6 @@
 package org.shlimtech.typesevendcore.task;
 
+import io.micrometer.core.instrument.Counter;
 import org.junit.jupiter.api.Test;
 import org.shlimtech.typesevendatabasecommon.metadata.Metadata;
 import org.shlimtech.typesevendatabasecommon.service.MetadataService;
@@ -15,6 +16,8 @@ public class TaskTests extends BaseTest {
     private UserService userService;
     @Autowired
     private MetadataService metadataService;
+    @Autowired
+    private Counter tasksCounter;
 
     @Test
     public void simpleTaskTest() {
@@ -37,7 +40,7 @@ public class TaskTests extends BaseTest {
 
         Assert.isTrue(metadataService.canMatch(met1, met2), "can not match");
 
-        new FindMatchForUserTask(metadataService, userService, user1.getId()).run();
+        new FindMatchForUserTask(metadataService, userService, tasksCounter, user1.getId()).run();
 
         Metadata result = metadataService.loadUserMetadata(user1.getId());
 

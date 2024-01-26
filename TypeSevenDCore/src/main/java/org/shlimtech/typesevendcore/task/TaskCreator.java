@@ -1,5 +1,6 @@
 package org.shlimtech.typesevendcore.task;
 
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.shlimtech.typesevendatabasecommon.service.MetadataService;
@@ -22,6 +23,7 @@ public class TaskCreator {
     private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
     private final UserService userService;
     private final MetadataService metadataService;
+    private final Counter tasksCounter;
     private final Random random = new Random();
 
     @Scheduled(fixedRate = 10000)
@@ -31,7 +33,7 @@ public class TaskCreator {
             return;
         }
         UserDTO user = users.get(random.nextInt(users.size()));
-        threadPoolTaskExecutor.execute(new FindMatchForUserTask(metadataService, userService, user.getId()));
+        threadPoolTaskExecutor.execute(new FindMatchForUserTask(metadataService, userService, tasksCounter, user.getId()));
     }
 
 }
