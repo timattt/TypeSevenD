@@ -37,7 +37,7 @@ public class FindMatchForUserTask implements Runnable {
         for (UserDTO other : users) {
             Metadata otherMetadata = metadataService.loadUserMetadata(other.getId());
 
-            if (!metadataService.canMatch(ownMetadata, otherMetadata)) {
+            if (!metadataService.canMatch(ownMetadata, otherMetadata) || otherMetadata.isParsedByJob()) {
                 continue;
             }
 
@@ -54,6 +54,12 @@ public class FindMatchForUserTask implements Runnable {
 
     private void saveMatch(UserDTO match) {
         Metadata metadata = metadataService.loadUserMetadata(userId);
+
+        if (metadata.isParsedByJob()) {
+            log.info("User is parsed by job. skipping...");
+            return;
+        }
+
         metadata.getSelectedUsers().clear();
         if (match != null) {
             log.info("For user: [" + userId + "] match is found: [" + match.getId() + "]");
